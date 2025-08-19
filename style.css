@@ -4,7 +4,7 @@
   padding: 0;
 }
 .marquee-section {
-  height: 60vh;
+  height: 70vh;
   width: 100vw;
   overflow: hidden;
   display: flex;
@@ -16,31 +16,46 @@
 .marquee-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 30px;
-  transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  transform: rotateX(55deg) rotateZ(-45deg);
+}
+/* group 1: 3, 6, 9, ... */
+.marquee-grid > .single-card:nth-child(3n) {
+  animation-name: scrollUp;
 }
 
-.card-column {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+/* group 2: 1, 4, 7, 10, ... */
+.marquee-grid > .single-card:nth-child(3n + 1) {
+  animation-name: scrollUp;
 }
+
+/* group 3: 2, 5, 8, 11, ... */
+.marquee-grid > .single-card:nth-child(3n + 2) {
+  animation-name: scrollDown;
+}
+
 .scroll-up {
-  animation: scrollUp 2.8s infinite;
+  animation: scrollUp infinite;
 }
 
 .scroll-down {
-  animation: scrollDown 2.8s infinite;
+  animation: scrollDown infinite;
 }
 .single-card {
   width: 100%;
-  height: 300px;
+  height: 250px;
   background: #106066;
   border-radius: 10px;
   overflow: hidden;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  transition: all 0.5s ease-in-out;
+}
+.single-card:hover {
+  scale: 1.1;
+  box-shadow: rgba(16, 96, 102, 0.1) 0px 14px 28px,
+    rgba(16, 96, 102, 0.1) 0px 10px 10px;
 }
 
 .card-image {
@@ -51,29 +66,121 @@
 /* Move up */
 @keyframes scrollUp {
   0% {
-    transform: translateY(40px);
+    transform: translateY(100px);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   50% {
-    transform: translateY(-40px);
+    transform: translateY(-100px);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   100% {
-    transform: translateY(40px);
+    transform: translateY(100px);
   }
 }
 
 /* Move down */
 @keyframes scrollDown {
   0% {
-    transform: translateY(-40px);
+    transform: translateY(-100px);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   50% {
-    transform: translateY(40px);
+    transform: translateY(100px);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   100% {
-    transform: translateY(-40px);
+    transform: translateY(-100px);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.rotate-control {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.controls button,
+.rotate-control button {
+  padding: 8px 15px;
+  border: none;
+  background: #106066;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.controls button:hover {
+  background: #1a8f97;
+}
+.rotate-control label {
+  color: #1a8f97;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.rotate-control input[type="number"] {
+  width: 60px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.rotate-controlcontrols input[type="number"]:focus {
+  outline: none;
+  border-color: #1a8f97;
+}
+
+@media (min-width: 576px) {
+  .single-card {
+    height: 200px;
+    /* Styles for ≥576px */
+  }
+}
+
+/* Medium devices (≥768px) */
+@media (min-width: 768px) {
+  .single-card {
+    height: 250px;
+    /* Styles for ≥768px */
+  }
+}
+
+/* Large devices (≥992px) */
+@media (min-width: 992px) {
+  .single-card {
+    height: 280px;
+    /* Styles for ≥992px */
+  }
+}
+
+/* Extra large devices (≥1200px) */
+@media (min-width: 1200px) {
+  .single-card {
+    height: 300px;
+    /* Styles for ≥1200px */
+  }
+}
+
+/* Extra extra large devices (≥1400px) */
+@media (min-width: 1400px) {
+  .single-card {
+    height: 25vw;
+    /* Styles for ≥1400px */
   }
 }
