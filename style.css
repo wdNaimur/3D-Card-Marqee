@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.marquee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+}
+
+.card-column {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: linear-gradient(
+    to bottom,
+    #1a8f97,
+    #1a8f97 50%,
+    #1a8f97 50%,
+    #1a8f97
+  );
+}
+
+.single-card {
+  width: 90%;
+  height: 200px;
+  background: #310000;
+}
