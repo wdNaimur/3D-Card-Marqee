@@ -7,16 +7,21 @@
   height: 60vh;
   overflow: hidden;
   background: #262626;
+  perspective: 7000px;
+}
+.purspective-set {
+  transform-origin: center center;
+  transform: rotateX(55deg) rotateZ(-45deg)
+    translateX(calc(1000px - 45vw * 1.5)) translateY(-35vw);
+  /* dynamic   */
 }
 
 .marquee-section {
   width: 100vw;
-  margin-top: -1000px; /* dynamic  */
-  margin-left: 500px; /* dynamic  */
   display: flex;
   justify-items: center;
   align-items: center;
-  transform: perspective(1000px) rotateX(55deg) rotateZ(-45deg); /* dynamic  */
+  position: absolute;
 }
 .marquee-grid {
   width: 100%;
@@ -67,6 +72,7 @@
   transition: all 0.5s ease-in-out;
 }
 .single-card:hover {
+  z-index: 10;
   scale: 1.04;
   transform: translateY(-10px);
   box-shadow: rgba(16, 96, 102, 0.1) 0px 14px 28px;
@@ -78,6 +84,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 /* Move up */
 @keyframes scrollUp {
   0% {
