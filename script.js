@@ -70,7 +70,8 @@ function setGrid(cols) {
 }
 
 function setAnimationDirection() {
-  const grid = document.querySelector("#marquee-grid");
+  const grid = document.querySelectorAll(".marquee-grid");
+  console.log(grid);
   const cards = grid.children;
   const cols = parseInt(localStorage.getItem("cols")) || 3;
 
