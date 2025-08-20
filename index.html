@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D card Marquee</title>
     <link rel="stylesheet" href="style.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +20,7 @@
         <div class="purspective-set">
             <section id="marquee-section" class="marquee-section">
                 <div id="marquee-grid" class="marquee-grid dynamic-grid-col-3">
-                    <div class="single-card card-1" style="background-image: url('https://i.ibb.co/WvsGQSGQ/4.png'); 
+                    <div class="single-card" style="background-image: url('https://i.ibb.co/WvsGQSGQ/4.png'); 
             background-size: cover; 
             background-position: center;">
                     </div>
@@ -112,20 +118,40 @@
             <button onclick="setGrid(4)">3rd Column</button>
 
         </div>
-        <p style="text-align: center;">Rotate</p>
-        <form class="rotate-control">
-            <div class="control">
-                <label>Rotate X:</label>
-                <input type="range" id="rotateXRange" min="-360" max="360" value="55">
-                <input type="number" id="rotateX" min="-360" max="360" value="55">
-            </div>
+        <div>
+            <p style="text-align: center;">Rotate & Translate</p>
+            <form class="rotate-control">
+                <div class="control">
+                    <label>Rotate X:</label>
+                    <input type="range" id="rotateXRange" min="-360" max="360" value="55">
+                    <input type="number" id="rotateX" min="-360" max="360" value="55">
+                </div>
 
-            <div class="control">
-                <label>Rotate Z:</label>
-                <input type="range" id="rotateZRange" min="-360" max="360" value="-45">
-                <input type="number" id="rotateZ" min="-360" max="360" value="-45">
-            </div>
-        </form>
+                <div class="control">
+                    <label>Rotate Z:</label>
+                    <input type="range" id="rotateZRange" min="-360" max="360" value="-45">
+                    <input type="number" id="rotateZ" min="-360" max="360" value="-45">
+                </div>
+
+                <div class="control">
+                    <label>Translate X (%):</label>
+                    <input type="range" id="translateXRange" min="-100" max="100" value="-40">
+                    <input type="number" id="translateX" min="-100" max="100" value="-40">
+                </div>
+
+                <div class="control">
+                    <label>Translate Y (vw):</label>
+                    <input type="range" id="translateYRange" min="-100" max="100" value="-45">
+                    <input type="number" id="translateY" min="-100" max="100" value="-45">
+                </div>
+
+                <div class="control">
+                    <label>Perspective (px):</label>
+                    <input type="range" id="perspectiveRange" min="200" max="2000" value="1000">
+                    <input type="number" id="perspective" min="200" max="2000" value="1000">
+                </div>
+            </form>
+        </div>
         <div>
             <p style="text-align: center;">overlay on the card</p>
             <button onclick="addOverlayOnCard()">Add overlay</button>
