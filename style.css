@@ -3,22 +3,34 @@
   margin: 0;
   padding: 0;
 }
-.marquee-section {
-  height: 70vh;
-  width: 100vw;
+.hight-set {
+  height: 60vh;
   overflow: hidden;
+  background: #262626;
+}
+
+.marquee-section {
+  width: 100vw;
+  margin-top: -1000px; /* dynamic  */
+  margin-left: 500px; /* dynamic  */
   display: flex;
   justify-items: center;
   align-items: center;
-  background: #262626;
-  overflow: hidden;
+  transform: perspective(1000px) rotateX(55deg) rotateZ(-45deg); /* dynamic  */
 }
 .marquee-grid {
   width: 100%;
   display: grid;
+  gap: 1vw;
+}
+.dynamic-grid-col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.dynamic-grid-col-3 {
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  transform: rotateX(55deg) rotateZ(-45deg);
+}
+.dynamic-grid-col-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 /* group 1: 3, 6, 9, ... */
 .marquee-grid > .single-card:nth-child(3n) {
@@ -43,8 +55,10 @@
   animation: scrollDown infinite;
 }
 .single-card {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  height: 250px;
+  aspect-ratio: 3 / 2;
   background: #106066;
   border-radius: 10px;
   overflow: hidden;
@@ -53,12 +67,13 @@
   transition: all 0.5s ease-in-out;
 }
 .single-card:hover {
-  scale: 1.1;
-  box-shadow: rgba(16, 96, 102, 0.1) 0px 14px 28px,
-    rgba(16, 96, 102, 0.1) 0px 10px 10px;
+  scale: 1.04;
+  transform: translateY(-10px);
+  box-shadow: rgba(16, 96, 102, 0.1) 0px 14px 28px;
 }
 
 .card-image {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -144,43 +159,4 @@
 .rotate-controlcontrols input[type="number"]:focus {
   outline: none;
   border-color: #1a8f97;
-}
-
-@media (min-width: 576px) {
-  .single-card {
-    height: 200px;
-    /* Styles for ≥576px */
-  }
-}
-
-/* Medium devices (≥768px) */
-@media (min-width: 768px) {
-  .single-card {
-    height: 250px;
-    /* Styles for ≥768px */
-  }
-}
-
-/* Large devices (≥992px) */
-@media (min-width: 992px) {
-  .single-card {
-    height: 280px;
-    /* Styles for ≥992px */
-  }
-}
-
-/* Extra large devices (≥1200px) */
-@media (min-width: 1200px) {
-  .single-card {
-    height: 300px;
-    /* Styles for ≥1200px */
-  }
-}
-
-/* Extra extra large devices (≥1400px) */
-@media (min-width: 1400px) {
-  .single-card {
-    height: 25vw;
-    /* Styles for ≥1400px */
-  }
 }
