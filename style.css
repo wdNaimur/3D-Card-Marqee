@@ -10,9 +10,9 @@
   perspective: 7000px;
 }
 .purspective-set {
-  transform-origin: center center;
-  transform: rotateX(55deg) rotateZ(-45deg)
-    translateX(calc(1000px - 45vw * 1.5)) translateY(-35vw);
+  transform-origin: top center;
+  /* transform: rotateX(55deg) rotateZ(-45deg) translateX(-40%) translateY(-45vw); */
+  /* translateX(calc(1000px - 45vw * 1.5)) translateY(-35vw) */
   /* dynamic   */
 }
 
@@ -27,6 +27,7 @@
   width: 100%;
   display: grid;
   gap: 1vw;
+  animation: infinityUp 25s linear infinite;
 }
 .dynamic-grid-col-2 {
   grid-template-columns: repeat(2, 1fr);
@@ -166,4 +167,16 @@
 .rotate-controlcontrols input[type="number"]:focus {
   outline: none;
   border-color: #1a8f97;
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #106066;
+  opacity: 0.5;
+  z-index: 1;
 }

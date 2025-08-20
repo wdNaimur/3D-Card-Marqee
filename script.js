@@ -1,4 +1,6 @@
 //  set grid and render columns button dynamically
+"use strict"
+
 function setGrid(cols) {
     const grid = document.querySelector("#marquee-grid");
     const singleCardControl = document.querySelector(".single-column-control");
@@ -154,5 +156,27 @@ function bindControls(rangeId, numberId) {
 bindControls("rotateXRange", "rotateX");
 bindControls("rotateZRange", "rotateZ");
 
-// Initial setup
-applyRotation();
+
+// overlay on the card
+function addOverlayOnCard() {
+    const cards = document.querySelectorAll('.single-card');
+    cards.forEach((card) => {
+        card.classList.add('overlay');
+    });
+}
+
+function removeOverlayOnCard() {
+    const cards = document.querySelectorAll('.single-card');
+    cards.forEach((card) => {
+        card.classList.remove('overlay');
+    });
+}
+
+const titleForm = document.getElementById("titleForm");
+const titleInput = document.getElementById("title");
+
+titleForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // prevent page reload
+    const titleValue = titleInput.value; // get input value
+    console.log("Title:", titleValue);
+});
