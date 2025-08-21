@@ -20,12 +20,12 @@
       <!-- set the purspective -->
       <div class="purspective-set">
         <!-- All cards Grid  -->
-        <section id="marquee-section" class="marquee-section">
-          <div id="marquee-grid" class="marquee-grid dynamic-grid-col-3">
+        <section class="marquee-section">
+          <div class="marquee-grid">
             <div
               class="single-card"
               style="
-                background-image: url('https://i.ibb.co/WvsGQSGQ/4.png');
+                background-image: url('https://i.ibb.co.com/NdKYZKf7/3.png');
                 background-size: cover;
                 background-position: center;
               "
@@ -262,16 +262,6 @@
     </div>
     <!-- Controller Section -->
     <div class="controller-panel">
-      <!-- Set Animation -->
-      <div class="panel-section">
-        <h3>Animation</h3>
-        <div class="controls">
-          <button onclick="setAnimation('columnUpDown')">Column Up Down</button>
-          <button onclick="setAnimation('infinityUp')">Infinity Up</button>
-          <button onclick="setAnimation('infinityDown')">Infinity Down</button>
-        </div>
-      </div>
-
       <!-- Grid Columns Controls -->
       <div class="panel-section">
         <h3>Grid Columns</h3>
@@ -282,14 +272,23 @@
         </div>
       </div>
 
-      <!-- Single Column Control -->
+      <!-- Set Animation -->
       <div class="panel-section">
-        <h3>Single Column</h3>
+        <h3>Animation</h3>
         <div class="controls">
-          <button onclick="setGrid(2)">1st</button>
-          <button onclick="setGrid(3)">2nd</button>
-          <button onclick="setGrid(4)">3rd</button>
+          <button onclick="setAnimation('columnUpDown')">Column Up Down</button>
+          <button onclick="setAnimation('infinityUp')">Infinity Up</button>
+          <button onclick="setAnimation('infinityDown')">Infinity Down</button>
         </div>
+      </div>
+
+      <!-- Single Column Control -->
+      <div
+        class="panel-section single-column-controlSection"
+        style="display: none"
+      >
+        <h3>Single Column</h3>
+        <div class="controls single-column-control"></div>
       </div>
 
       <!-- Transform Control -->

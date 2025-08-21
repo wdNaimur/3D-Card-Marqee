@@ -55,32 +55,16 @@
   }
 }
 
-/* NEED TO FIX  WITH JAVASCRIPT   */
-/* group 1: 3, 6, 9, ... */
-/* .marquee-grid > .single-card:nth-child(3n) {
-  animation-name: scrollUp;
-} */
-
-/* group 2: 1, 4, 7, 10, ... */
-/* .marquee-grid > .single-card:nth-child(3n + 1) {
-  animation-name: scrollUp;
-} */
-
-/* group 3: 2, 5, 8, 11, ... */
-/* .marquee-grid > .single-card:nth-child(3n + 2) {
-  animation-name: scrollDown;
-} */
-
 /* stataic design  */
 .hight-set {
   height: 90vh;
   overflow: hidden;
   background: #262626;
-  perspective: 4000px;
+  /* perspective: 4000px; */
 }
 .purspective-set {
   transform-origin: top center;
-  transform: rotateX(55deg) rotateZ(-45deg) translateX(-25%) translateY(-20%);
+  /* transform: rotateX(55deg) rotateZ(-45deg) translateX(-25%) translateY(-20%); */
 }
 
 .marquee-section {
@@ -94,9 +78,6 @@
   gap: 1vw;
 }
 /* need to stop animation on hovering on the whole box. */
-.marquee-grid:hover {
-  /* animation-play-state: paused; */
-}
 .dynamic-grid-col-2 {
   grid-template-columns: repeat(2, 1fr);
 }
