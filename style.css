@@ -7,8 +7,21 @@
 /* Dynamic animations  */
 /* infinity Up  */
 @keyframes infinityUp {
+  0% {
+    transform: translateY(0);
+  }
   100% {
     transform: translateY(calc(-100% - 1vw));
+  }
+}
+
+/* infinity Down  */
+@keyframes infinityDown {
+  0% {
+    transform: translateY(calc(-100% - 1vw));
+  }
+  100% {
+    transform: translateY(calc(0%));
   }
 }
 
@@ -42,14 +55,6 @@
   }
 }
 
-.scroll-up {
-  animation: scrollUp infinite;
-}
-
-.scroll-down {
-  animation: scrollDown infinite;
-}
-
 /* NEED TO FIX  WITH JAVASCRIPT   */
 /* group 1: 3, 6, 9, ... */
 /* .marquee-grid > .single-card:nth-child(3n) {
@@ -71,11 +76,11 @@
   height: 90vh;
   overflow: hidden;
   background: #262626;
-  /* perspective: 2000px; */
+  perspective: 4000px;
 }
 .purspective-set {
   transform-origin: top center;
-  transform: rotateX(55deg) rotateZ(-45deg) translateX(-40%) translateY(0);
+  transform: rotateX(55deg) rotateZ(-45deg) translateX(-25%) translateY(-20%);
 }
 
 .marquee-section {
