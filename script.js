@@ -10,6 +10,7 @@ function setAnimation(animation) {
     infinityDown();
   }
 }
+setAnimation(localStorage.getItem("animation"));
 
 function removeAnimation() {
   // Select all cards in all grids
@@ -154,8 +155,8 @@ function setAnimationColumnUpDown() {
     columnControlSection.style.display = "block";
     for (let i = 1; i <= cols; i++) {
       buttonsHTML += `
-      <button onclick="setdirectionUp(${i})">${i}st Column Up</button>
-      <button onclick="setdirectionDown(${i})">${i}st Column Down</button>
+      <button onclick="setdirectionUp(${i})">${i} Column Up</button>
+      <button onclick="setdirectionDown(${i})">${i} Column Down</button>
     `;
     }
   } else {
@@ -165,15 +166,14 @@ function setAnimationColumnUpDown() {
 }
 
 function setGrid(cols) {
-  removeAnimation();
-  const grids = document.querySelectorAll(".marquee-grid"); // select all grids
+  const grids = document.querySelectorAll(".marquee-grid");
   const singleCardControl = document.querySelector(".single-column-control");
   const columnControlSection = document.querySelector(
     ".single-column-controlSection"
   );
 
   grids.forEach((grid) => {
-    // Remove existing dynamic grid classes
+    // Remove old grid classes
     [...grid.classList].forEach((cls) => {
       if (cls.startsWith("dynamic-grid-col-")) {
         grid.classList.remove(cls);
@@ -183,23 +183,52 @@ function setGrid(cols) {
     // Add new grid class
     grid.classList.add(`dynamic-grid-col-${cols}`);
     localStorage.setItem("cols", cols);
+
+    // --- Apply animation to cards ---
+    const cards = grid.children;
+    const savedCols = parseInt(localStorage.getItem("cols")) || 3;
+    const animation = localStorage.getItem("animation");
+    console.log(animation);
+    if (animation == "columnUpDown") {
+      removeAnimation();
+      for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const colIndex = i % savedCols;
+
+        if (savedCols === 2) {
+          card.style.animation =
+            colIndex === 0
+              ? "scrollUp 3s infinite cubic-bezier(0.4, 0, 0.2, 1)"
+              : "scrollDown 3s infinite cubic-bezier(0.4, 0, 0.2, 1)";
+        } else if (savedCols === 3) {
+          card.style.animation =
+            colIndex === 1
+              ? "scrollDown 3s infinite cubic-bezier(0.4, 0, 0.2, 1)"
+              : "scrollUp 3s infinite cubic-bezier(0.4, 0, 0.2, 1)";
+        } else if (savedCols === 4) {
+          card.style.animation =
+            colIndex === 0 || colIndex === 2
+              ? "scrollUp 3s infinite cubic-bezier(0.4, 0, 0.2, 1)"
+              : "scrollDown 3s infinite cubic-bezier(0.4, 0, 0.2, 1)";
+        }
+      }
+    }
   });
 
-  // Dynamically create column control buttons
+  // --- Generate control buttons ---
   let buttonsHTML = "";
-  if (localStorage.getItem("animation") == "columnUpDown") {
+  if (localStorage.getItem("animation") === "columnUpDown") {
     columnControlSection.style.display = "block";
     for (let i = 1; i <= cols; i++) {
       buttonsHTML += `
-      <button onclick="setdirectionUp(${i})">${i}st Column Up</button>
-      <button onclick="setdirectionDown(${i})">${i}st Column Down</button>
-    `;
+        <button onclick="setdirectionUp(${i})">Column ${i} Up</button>
+        <button onclick="setdirectionDown(${i})">Column ${i} Down</button>
+      `;
     }
-  } else {
-    buttonsHTML = "";
   }
   singleCardControl.innerHTML = buttonsHTML;
 }
+
 // initial grid set
 setGrid(localStorage.getItem("cols"));
 
