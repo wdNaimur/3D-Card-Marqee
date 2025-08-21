@@ -10,7 +10,7 @@ function setAnimation(animation) {
     infinityDown();
   }
 }
-setAnimation(localStorage.getItem("animation"));
+setAnimation(localStorage.getItem("animation") || "columnUpDown");
 
 function removeAnimation() {
   // Select all cards in all grids
@@ -230,7 +230,7 @@ function setGrid(cols) {
 }
 
 // initial grid set
-setGrid(localStorage.getItem("cols"));
+setGrid(localStorage.getItem("cols") || 3);
 
 function setAnimationDirection() {
   const grid = document.querySelectorAll(".marquee-grid");

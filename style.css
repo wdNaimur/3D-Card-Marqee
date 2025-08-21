@@ -145,26 +145,26 @@
   background: #1a8f97;
 }
 .rotate-control label {
-  color: #1a8f97;
+  color: #106066;
   font-weight: bold;
   font-size: 14px;
 }
 
 .rotate-control input[type="number"] {
-  width: 60px;
+  width: 100px;
   padding: 5px 8px;
   border-radius: 6px;
   border: 1px solid #555;
   background: #333;
   color: #fff;
   font-weight: bold;
-  text-align: center;
+  text-align: right;
   transition: 0.3s;
 }
 
 .rotate-controlcontrols input[type="number"]:focus {
   outline: none;
-  border-color: #1a8f97;
+  border-color: #106066;
 }
 
 .overlay {
@@ -199,7 +199,6 @@
   background: #ffffff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 }
 
 .panel-section {
@@ -230,7 +229,7 @@ button {
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
-  background: #0077ff;
+  background: #106066;
   color: white;
   font-weight: 500;
   cursor: pointer;
@@ -238,7 +237,7 @@ button {
 }
 
 button:hover {
-  background: #005fcc;
+  background: #333;
 }
 
 .rotate-control .control {
@@ -270,4 +269,17 @@ input[type="text"] {
   display: flex;
   gap: 8px;
   justify-content: center;
+}
+
+.title-form input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 2px solid rgba(16, 96, 102, 0.3);
+  color: #333;
+}
+
+.title-form input[type="text"]:focus {
+  outline: 2px solid rgba(16, 96, 102, 0.6);
+  border-color: transparent;
 }
