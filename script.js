@@ -1,5 +1,62 @@
 //  set grid and render columns button dynamically
 "use strict";
+function setAnimation(animation) {
+  if (animation === "columnUpDown") {
+    setAnimationColumnUpDown();
+  } else if (animation === "infinityUp") {
+    infinityUp();
+  } else if (animation === "infinityDown") {
+    setAnimationDirection("infinityDown");
+  }
+}
+
+// animation: infinityUp 50s linear infinite;
+// function infinityUp() {
+//   const grid = document.querySelector(".marquee-section");
+//   const firstChildren = grid.children[0];
+//   const secondChildren = grid.children[1];
+
+//   // Duplicate the first child if only one exists
+//   if (firstChildren && !secondChildren) {
+//     const clone = firstChildren.cloneNode(true);
+//     grid.appendChild(clone);
+//   }
+
+//   // Apply flex direction only once
+//   grid.style.flexDirection = "column";
+
+//   // Add animation to both children
+//   if (firstChildren && secondChildren) {
+//     [firstChildren, secondChildren].forEach((child) => {
+//       child.style.animation = `infinityUp 50s linear infinite`;
+//     });
+//   }
+// }
+async function infinityUp() {
+  const grid = document.querySelector(".marquee-section");
+  const firstChildren = grid.children[0];
+  const secondChildren = grid.children[1];
+
+  // Duplicate the first child if only one exists, but wait before appending
+  if (firstChildren && !secondChildren) {
+    const clone = firstChildren.cloneNode(true);
+
+    // ⏳ wait before appending (example: 2s)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    grid.appendChild(clone);
+  }
+
+  // Apply flex direction only once
+  grid.style.flexDirection = "column";
+
+  // Add animation to both children if present
+  if (grid.children[0] && grid.children[1]) {
+    [grid.children[0], grid.children[1]].forEach((child) => {
+      child.style.animation = `infinityUp 50s linear infinite`;
+    });
+  }
+}
 
 function setGrid(cols) {
   const grid = document.querySelector("#marquee-grid");
@@ -71,7 +128,6 @@ function setGrid(cols) {
 
 function setAnimationDirection() {
   const grid = document.querySelectorAll(".marquee-grid");
-  console.log(grid);
   const cards = grid.children;
   const cols = parseInt(localStorage.getItem("cols")) || 3;
 
@@ -145,27 +201,6 @@ function applyRotation() {
 }
 
 // Keep slider and number in sync
-function bindControls(rangeId, numberId) {
-  const range = document.getElementById(rangeId);
-  const number = document.getElementById(numberId);
-
-  range.addEventListener("input", () => {
-    number.value = range.value;
-    applyTransform();
-  });
-
-  number.addEventListener("input", () => {
-    range.value = number.value;
-    applyTransform();
-  });
-}
-
-// Bind all controls
-bindControls("rotateXRange", "rotateX");
-bindControls("rotateZRange", "rotateZ");
-bindControls("translateXRange", "translateX");
-bindControls("translateYRange", "translateY");
-bindControls("perspectiveRange", "perspective");
 
 function applyTransform() {
   const x = parseFloat(document.getElementById("rotateX").value) ?? 55;
@@ -188,9 +223,6 @@ function applyTransform() {
   setPerspective.style.perspective = `${perspective}px`;
   // setPerspective.style.transform = ``;
 }
-
-// Initialize
-// applyTransform();
 
 // overlay on the card
 function addOverlayOnCard() {
@@ -237,3 +269,25 @@ titleForm.addEventListener("submit", function (event) {
     card.appendChild(titleEl);
   });
 });
+
+function bindControls(rangeId, numberId) {
+  const range = document.getElementById(rangeId);
+  const number = document.getElementById(numberId);
+
+  range.addEventListener("input", () => {
+    number.value = range.value;
+    applyTransform();
+  });
+
+  number.addEventListener("input", () => {
+    range.value = number.value;
+    applyTransform();
+  });
+}
+
+// Bind all controls
+bindControls("rotateXRange", "rotateX");
+bindControls("rotateZRange", "rotateZ");
+bindControls("translateXRange", "translateX");
+bindControls("translateYRange", "translateY");
+bindControls("perspectiveRange", "perspective");
